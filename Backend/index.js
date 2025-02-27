@@ -34,7 +34,7 @@ app.use(express.json()); // ana thi beackend maje data aavse e object na form ma
 app.use(express.urlencoded({ extended: true })); // form na data ne object ma convert kare
 app.use(cookieParser());
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://fullstack-job-portal-2.onrender.com',
     credentials: true
 }
 app.use(cors(corsOptions));
@@ -50,6 +50,9 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
+app.get('/', (req, res) => {
+    res.send('API is running...');
+  });
 
 if(process.env.NODE_ENV === "development"){
     app.use(express.static(path.join(__dirname,"../Frontend/dist")));
